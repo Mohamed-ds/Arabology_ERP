@@ -39,8 +39,7 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="MyLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="MyLibrary">
       <HintPath>..\..\MyLibrary\MyLibrary\bin\Debug\MyLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -59,6 +58,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\BL_Branch.cs" />
+    <Compile Include="BL\BL_General.cs" />
     <Compile Include="DAL\Account.cs">
       <DependentUpon>ArabologyDB.tt</DependentUpon>
     </Compile>
@@ -234,7 +235,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BL\" />
     <Folder Include="PL\Accounting\" />
     <Folder Include="PL\Purchases\" />
     <Folder Include="PL\Sales\" />
