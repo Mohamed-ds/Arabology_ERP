@@ -26,10 +26,10 @@ namespace Arabology_ERP
                new City(){ID =4,Name="Minea"},
                new City(){ID =3,Name="Alex"}
            };
-            ForForms.SetDataToComboBox(city, ref comboBox1);
-            //comboBox1.DataSource = city;
-            //comboBox1.DisplayMember = "Name";
-            //comboBox1.ValueMember = "ID";
+            //ForForms.SetDataToComboBox(city, ref comboBox1);
+            comboBox1.DataSource = city;
+            comboBox1.DisplayMember = "Name";
+            comboBox1.ValueMember = "ID";
         }
     }
     public class City
