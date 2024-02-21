@@ -87,13 +87,30 @@ namespace Arabology_ERP.BL
             
         }
 
-        public void Search()
+        public void Search(string findWay)
         {   
             try
             {
-                var branches = db.Branches.Where(b=> b.BranchNameA.Contains(txtFind) || b.BranchNameE.Contains(txtFind));
-                dgv.DataSource = branches.ToList();
-                SetDGV();
+                var branches = db.Branches.ToList();
+                switch (findWay)
+                {
+                    case "Contains":
+                        branches = db.Branches.Where(b => b.BranchNameA.Contains(txtFind) || b.BranchNameE.Contains(txtFind)).ToList();
+                        dgv.DataSource = branches.ToList();
+                        break;
+                    case "StartsWith":
+                        branches = db.Branches.Where(b => b.BranchNameA.StartsWith(txtFind) || b.BranchNameE.StartsWith(txtFind)).ToList();
+                        dgv.DataSource = branches.ToList();
+                        break;
+                    case "Equals":
+                        branches = db.Branches.Where(b => b.BranchNameA.Equals(txtFind) || b.BranchNameE.Equals(txtFind)).ToList();
+                        dgv.DataSource = branches.ToList();
+                        break;
+                    default:
+                        SetDGV();
+                        break;
+                }
+                
             }
             catch (Exception ex)
             {

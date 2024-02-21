@@ -21,7 +21,7 @@ namespace Arabology_ERP.BL
         void Delete();
         void FillDGV();
         void Update();
-        void Search();
+        void Search(string findWay);
         void SetDGV();
     }
     public class BL_General
