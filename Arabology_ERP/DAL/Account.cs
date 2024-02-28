@@ -22,5 +22,8 @@ namespace Arabology_ERP.DAL
         public Nullable<short> FinalAccount { get; set; }
         public Nullable<short> FinalState { get; set; }
         public Nullable<int> ParentId { get; set; }
+        public string BUID { get; set; }
+    
+        public virtual BuisnessUnit BuisnessUnit { get; set; }
     }
 }

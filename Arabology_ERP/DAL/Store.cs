@@ -27,6 +27,7 @@ namespace Arabology_ERP.DAL
         public string StoreNameA { get; set; }
         public string StoreNameE { get; set; }
         public Nullable<bool> InActive { get; set; }
+        public string BUID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sale> Sales { get; set; }
@@ -36,5 +37,6 @@ namespace Arabology_ERP.DAL
         public virtual ICollection<SalesLine> SalesLines1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Salesman> Salesmen { get; set; }
+        public virtual BuisnessUnit BuisnessUnit { get; set; }
     }
 }

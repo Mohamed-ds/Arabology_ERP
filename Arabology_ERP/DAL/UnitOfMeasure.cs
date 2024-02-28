@@ -26,6 +26,7 @@ namespace Arabology_ERP.DAL
             this.SalesLines = new HashSet<SalesLine>();
             this.CalcUnitOfMeasures = new HashSet<CalcUnitOfMeasure>();
             this.CalcUnitOfMeasures1 = new HashSet<CalcUnitOfMeasure>();
+            this.Prices = new HashSet<Price>();
         }
     
         public string UOM { get; set; }
@@ -50,5 +51,7 @@ namespace Arabology_ERP.DAL
         public virtual ICollection<CalcUnitOfMeasure> CalcUnitOfMeasures { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CalcUnitOfMeasure> CalcUnitOfMeasures1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Price> Prices { get; set; }
     }
 }

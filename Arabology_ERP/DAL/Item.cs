@@ -18,6 +18,7 @@ namespace Arabology_ERP.DAL
         public Item()
         {
             this.SalesLines = new HashSet<SalesLine>();
+            this.Prices = new HashSet<Price>();
         }
     
         public int ItemId { get; set; }
@@ -35,6 +36,7 @@ namespace Arabology_ERP.DAL
         public string SalesUOM { get; set; }
         public string PurchaseUOM { get; set; }
         public string InventoryUOM { get; set; }
+        public string BUID { get; set; }
     
         public virtual Brand Brand { get; set; }
         public virtual Category Category { get; set; }
@@ -50,5 +52,8 @@ namespace Arabology_ERP.DAL
         public virtual UnitOfMeasure UnitOfMeasure5 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesLine> SalesLines { get; set; }
+        public virtual BuisnessUnit BuisnessUnit { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Price> Prices { get; set; }
     }
 }

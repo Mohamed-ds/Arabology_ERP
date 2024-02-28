@@ -50,5 +50,7 @@ namespace Arabology_ERP.DAL
         public virtual DbSet<Term> Terms { get; set; }
         public virtual DbSet<UnitOfMeasure> UnitOfMeasures { get; set; }
         public virtual DbSet<CalcUnitOfMeasure> CalcUnitOfMeasures { get; set; }
+        public virtual DbSet<BuisnessUnit> BuisnessUnits { get; set; }
+        public virtual DbSet<Price> Prices { get; set; }
     }
 }
