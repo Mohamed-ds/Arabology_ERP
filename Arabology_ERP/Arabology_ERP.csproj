@@ -59,7 +59,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL\BL_Branch.cs" />
+    <Compile Include="BL\BL_Brands.cs" />
+    <Compile Include="BL\BL_BuisnessUnit.cs" />
+    <Compile Include="BL\BL_Category.cs" />
+    <Compile Include="BL\BL_City.cs" />
+    <Compile Include="BL\BL_Class.cs" />
+    <Compile Include="BL\BL_Country.cs" />
     <Compile Include="BL\BL_General.cs" />
+    <Compile Include="BL\BL_ItemSubType.cs" />
+    <Compile Include="BL\BL_ItemType.cs" />
+    <Compile Include="BL\BL_Region.cs" />
+    <Compile Include="BL\BL_Sector.cs" />
+    <Compile Include="BL\BL_Term.cs" />
     <Compile Include="DAL\Account.cs">
       <DependentUpon>ArabologyDB.tt</DependentUpon>
     </Compile>
@@ -85,6 +96,9 @@
       <DependentUpon>ArabologyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\Brand.cs">
+      <DependentUpon>ArabologyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\BuisnessUnit.cs">
       <DependentUpon>ArabologyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\CalcUnitOfMeasure.cs">
@@ -115,6 +129,9 @@
       <DependentUpon>ArabologyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\ItemType.cs">
+      <DependentUpon>ArabologyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Price.cs">
       <DependentUpon>ArabologyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\PriceList.cs">

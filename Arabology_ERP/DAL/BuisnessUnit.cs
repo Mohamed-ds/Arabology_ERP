@@ -12,30 +12,38 @@ namespace Arabology_ERP.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class PriceList
+    public partial class BuisnessUnit
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PriceList()
+        public BuisnessUnit()
         {
+            this.Accounts = new HashSet<Account>();
             this.Customers = new HashSet<Customer>();
+            this.DeliveryMen = new HashSet<DeliveryMan>();
+            this.Items = new HashSet<Item>();
             this.Sales = new HashSet<Sale>();
-            this.Prices = new HashSet<Price>();
+            this.Salesmen = new HashSet<Salesman>();
+            this.Stores = new HashSet<Store>();
         }
     
-        public int PriceListId { get; set; }
-        public string PriceListNameA { get; set; }
-        public string PriceListNameE { get; set; }
+        public string BUID { get; set; }
+        public string BUNameA { get; set; }
+        public string BUNameE { get; set; }
         public Nullable<bool> InActive { get; set; }
-        public Nullable<bool> IsCost { get; set; }
-        public Nullable<System.DateTime> PriceDate { get; set; }
-        public Nullable<System.DateTime> PriceEnd { get; set; }
-        public string Currency { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Account> Accounts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Customer> Customers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DeliveryMan> DeliveryMen { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Item> Items { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sale> Sales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Price> Prices { get; set; }
+        public virtual ICollection<Salesman> Salesmen { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Store> Stores { get; set; }
     }
 }

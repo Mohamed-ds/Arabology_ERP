@@ -29,6 +29,7 @@ namespace Arabology_ERP.DAL
         public Nullable<int> SectorId { get; set; }
         public Nullable<int> StoreId { get; set; }
         public Nullable<bool> InActive { get; set; }
+        public string BUID { get; set; }
     
         public virtual Branch Branch { get; set; }
         public virtual Category Category { get; set; }
@@ -37,5 +38,6 @@ namespace Arabology_ERP.DAL
         public virtual SalesmanType SalesmanType { get; set; }
         public virtual Sector Sector { get; set; }
         public virtual Store Store { get; set; }
+        public virtual BuisnessUnit BuisnessUnit { get; set; }
     }
 }

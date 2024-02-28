@@ -71,6 +71,18 @@
         <AssociationConnector Association="Arabology_ERPModel.FK_Salesmen_Stores" ManuallyRouted="false" />
         <AssociationConnector Association="Arabology_ERPModel.FK_CalcUnitOfMeasure_UnitOfMeasure" ManuallyRouted="false" />
         <AssociationConnector Association="Arabology_ERPModel.FK_CalcUnitOfMeasure_UnitOfMeasure1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Arabology_ERPModel.BuisnessUnit" Width="1.5" PointX="0.75" PointY="36.125" />
+        <EntityTypeShape EntityType="Arabology_ERPModel.Price" Width="1.5" PointX="7.5" PointY="25.625" />
+        <AssociationConnector Association="Arabology_ERPModel.FK_Accounts_BuisnessUnit" />
+        <AssociationConnector Association="Arabology_ERPModel.FK_Customers_BuisnessUnit" />
+        <AssociationConnector Association="Arabology_ERPModel.FK_DeliveryMen_BuisnessUnit" />
+        <AssociationConnector Association="Arabology_ERPModel.FK_Items_BuisnessUnit" />
+        <AssociationConnector Association="Arabology_ERPModel.FK_Sales_BuisnessUnit" />
+        <AssociationConnector Association="Arabology_ERPModel.FK_Salesmen_BuisnessUnit" />
+        <AssociationConnector Association="Arabology_ERPModel.FK_Stores_BuisnessUnit" />
+        <AssociationConnector Association="Arabology_ERPModel.FK_Prices_Items" />
+        <AssociationConnector Association="Arabology_ERPModel.FK_Prices_PriceLists" />
+        <AssociationConnector Association="Arabology_ERPModel.FK_Prices_UnitOfMeasure" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

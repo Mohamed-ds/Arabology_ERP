@@ -19,22 +19,22 @@ namespace Arabology_ERP
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            List<City> city = new List<City>()
-           {
-               new City(){ID =1,Name="Cairo"},
-               new City(){ID =2,Name="Giza"},
-               new City(){ID =4,Name="Minea"},
-               new City(){ID =3,Name="Alex"}
-           };
+           // List<City> city = new List<City>()
+           //{
+           //    new City(){ID =1,Name="Cairo"},
+           //    new City(){ID =2,Name="Giza"},
+           //    new City(){ID =4,Name="Minea"},
+           //    new City(){ID =3,Name="Alex"}
+           //};
             //ForForms.SetDataToComboBox(city, ref comboBox1);
-            comboBox1.DataSource = city;
-            comboBox1.DisplayMember = "Name";
-            comboBox1.ValueMember = "ID";
+            //comboBox1.DataSource = city;
+            //comboBox1.DisplayMember = "Name";
+            //comboBox1.ValueMember = "ID";
         }
     }
-    public class City
-    {
-        public int ID { get; set; }
-        public string Name { get; set; }
-    }
+    //public class City
+    //{
+    //    public int ID { get; set; }
+    //    public string Name { get; set; }
+    //}
 }

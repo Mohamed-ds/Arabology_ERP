@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Arabology_ERPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Arabology_ERPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Accounts">
           <Key>
             <PropertyRef Name="AccountId" />
@@ -17,6 +17,7 @@
           <Property Name="FinalAccount" Type="smallint" />
           <Property Name="FinalState" Type="smallint" />
           <Property Name="ParentId" Type="int" />
+          <Property Name="BUID" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Areas">
           <Key>
@@ -43,6 +44,15 @@
           <Property Name="BrandId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BrandNameA" Type="nvarchar" MaxLength="100" />
           <Property Name="BrandNameE" Type="nvarchar" MaxLength="100" />
+          <Property Name="InActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="BuisnessUnit">
+          <Key>
+            <PropertyRef Name="BUID" />
+          </Key>
+          <Property Name="BUID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BUNameA" Type="nvarchar" MaxLength="150" />
+          <Property Name="BUNameE" Type="nvarchar" MaxLength="150" />
           <Property Name="InActive" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -115,6 +125,7 @@ warning 6002: The table/view 'Arabology_ERP.dbo.CalcUnitOfMeasure' does not have
           <Property Name="CategoryId" Type="int" />
           <Property Name="BranchId" Type="int" />
           <Property Name="PriceListId" Type="int" />
+          <Property Name="BUID" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="DeliveryMen">
           <Key>
@@ -126,6 +137,7 @@ warning 6002: The table/view 'Arabology_ERP.dbo.CalcUnitOfMeasure' does not have
           <Property Name="CategoryId" Type="int" />
           <Property Name="BranchId" Type="int" />
           <Property Name="InActive" Type="bit" />
+          <Property Name="BUID" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Items">
           <Key>
@@ -146,6 +158,7 @@ warning 6002: The table/view 'Arabology_ERP.dbo.CalcUnitOfMeasure' does not have
           <Property Name="SalesUOM" Type="nvarchar" MaxLength="15" />
           <Property Name="PurchaseUOM" Type="nvarchar" MaxLength="15" />
           <Property Name="InventoryUOM" Type="nvarchar" MaxLength="15" />
+          <Property Name="BUID" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ItemSubTypes">
           <Key>
@@ -179,13 +192,18 @@ warning 6002: The table/view 'Arabology_ERP.dbo.CalcUnitOfMeasure' does not have
           <Property Name="Currency" Type="nvarchar" MaxLength="15" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6013: The table/view 'Arabology_ERP.dbo.Prices' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6002: The table/view 'Arabology_ERP.dbo.Prices' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Prices">
-          <Property Name="PriceListId" Type="int" />
-          <Property Name="ItemId" Type="int" />
-          <Property Name="UOM" Type="nvarchar" MaxLength="15" />
+          <Key>
+            <PropertyRef Name="PriceListId" />
+            <PropertyRef Name="ItemId" />
+            <PropertyRef Name="UOM" />
+          </Key>
+          <Property Name="PriceListId" Type="int" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="UOM" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
-        </EntityType>-->
+        </EntityType>
         <EntityType Name="Regions">
           <Key>
             <PropertyRef Name="RegionId" />
@@ -223,6 +241,8 @@ warning 6013: The table/view 'Arabology_ERP.dbo.Prices' does not have a primary 
           <Property Name="ActivedUser" Type="int" Nullable="false" />
           <Property Name="StoreId" Type="int" Nullable="false" />
           <Property Name="Promotion" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="InvType" Type="int" Nullable="false" />
+          <Property Name="BUID" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="SalesLines">
           <Key>
@@ -264,6 +284,7 @@ warning 6013: The table/view 'Arabology_ERP.dbo.Prices' does not have a primary 
           <Property Name="SectorId" Type="int" />
           <Property Name="StoreId" Type="int" />
           <Property Name="InActive" Type="bit" />
+          <Property Name="BUID" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Sectors">
           <Key>
@@ -282,6 +303,7 @@ warning 6013: The table/view 'Arabology_ERP.dbo.Prices' does not have a primary 
           <Property Name="StoreNameA" Type="nvarchar" MaxLength="100" />
           <Property Name="StoreNameE" Type="nvarchar" MaxLength="100" />
           <Property Name="InActive" Type="bit" />
+          <Property Name="BUID" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -310,6 +332,18 @@ warning 6013: The table/view 'Arabology_ERP.dbo.Prices' does not have a primary 
           <Property Name="UOMNameA" Type="nvarchar" MaxLength="50" />
           <Property Name="UOMNameE" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_Accounts_BuisnessUnit">
+          <End Role="BuisnessUnit" Type="Self.BuisnessUnit" Multiplicity="0..1" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuisnessUnit">
+              <PropertyRef Name="BUID" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="BUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CalcUnitOfMeasure_Items">
           <End Role="Items" Type="Self.Items" Multiplicity="1" />
           <End Role="CalcUnitOfMeasure" Type="Self.CalcUnitOfMeasure" Multiplicity="0..1" />
@@ -367,6 +401,18 @@ warning 6013: The table/view 'Arabology_ERP.dbo.Prices' does not have a primary 
             </Principal>
             <Dependent Role="Customers">
               <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customers_BuisnessUnit">
+          <End Role="BuisnessUnit" Type="Self.BuisnessUnit" Multiplicity="0..1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuisnessUnit">
+              <PropertyRef Name="BUID" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="BUID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -442,6 +488,18 @@ warning 6013: The table/view 'Arabology_ERP.dbo.Prices' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DeliveryMen_BuisnessUnit">
+          <End Role="BuisnessUnit" Type="Self.BuisnessUnit" Multiplicity="0..1" />
+          <End Role="DeliveryMen" Type="Self.DeliveryMen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuisnessUnit">
+              <PropertyRef Name="BUID" />
+            </Principal>
+            <Dependent Role="DeliveryMen">
+              <PropertyRef Name="BUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Items_Brands">
           <End Role="Brands" Type="Self.Brands" Multiplicity="0..1" />
           <End Role="Items" Type="Self.Items" Multiplicity="*" />
@@ -451,6 +509,18 @@ warning 6013: The table/view 'Arabology_ERP.dbo.Prices' does not have a primary 
             </Principal>
             <Dependent Role="Items">
               <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_BuisnessUnit">
+          <End Role="BuisnessUnit" Type="Self.BuisnessUnit" Multiplicity="0..1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuisnessUnit">
+              <PropertyRef Name="BUID" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="BUID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -574,15 +644,42 @@ warning 6013: The table/view 'Arabology_ERP.dbo.Prices' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship, but cannot be found.
-        <Association Name="FK_Prices_Items" />-->
-        <!--Errors Found During Generation:
-error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship, but cannot be found.
-        <Association Name="FK_Prices_PriceLists" />-->
-        <!--Errors Found During Generation:
-error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship, but cannot be found.
-        <Association Name="FK_Prices_UnitOfMeasure" />-->
+        <Association Name="FK_Prices_Items">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="Prices" Type="Self.Prices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="Prices">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prices_PriceLists">
+          <End Role="PriceLists" Type="Self.PriceLists" Multiplicity="1" />
+          <End Role="Prices" Type="Self.Prices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceLists">
+              <PropertyRef Name="PriceListId" />
+            </Principal>
+            <Dependent Role="Prices">
+              <PropertyRef Name="PriceListId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prices_UnitOfMeasure">
+          <End Role="UnitOfMeasure" Type="Self.UnitOfMeasure" Multiplicity="1" />
+          <End Role="Prices" Type="Self.Prices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitOfMeasure">
+              <PropertyRef Name="UOM" />
+            </Principal>
+            <Dependent Role="Prices">
+              <PropertyRef Name="UOM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Sales_Branches">
           <End Role="Branches" Type="Self.Branches" Multiplicity="0..1" />
           <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
@@ -592,6 +689,18 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
             </Principal>
             <Dependent Role="Sales">
               <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sales_BuisnessUnit">
+          <End Role="BuisnessUnit" Type="Self.BuisnessUnit" Multiplicity="0..1" />
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuisnessUnit">
+              <PropertyRef Name="BUID" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="BUID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -763,6 +872,18 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Salesmen_BuisnessUnit">
+          <End Role="BuisnessUnit" Type="Self.BuisnessUnit" Multiplicity="0..1" />
+          <End Role="Salesmen" Type="Self.Salesmen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuisnessUnit">
+              <PropertyRef Name="BUID" />
+            </Principal>
+            <Dependent Role="Salesmen">
+              <PropertyRef Name="BUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Salesmen_Categories">
           <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
           <End Role="Salesmen" Type="Self.Salesmen" Multiplicity="*" />
@@ -811,11 +932,24 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Stores_BuisnessUnit">
+          <End Role="BuisnessUnit" Type="Self.BuisnessUnit" Multiplicity="0..1" />
+          <End Role="Stores" Type="Self.Stores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuisnessUnit">
+              <PropertyRef Name="BUID" />
+            </Principal>
+            <Dependent Role="Stores">
+              <PropertyRef Name="BUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Arabology_ERPModelStoreContainer">
           <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Areas" EntityType="Self.Areas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Branches" EntityType="Self.Branches" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Brands" EntityType="Self.Brands" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BuisnessUnit" EntityType="Self.BuisnessUnit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Classes" EntityType="Self.Classes" Schema="dbo" store:Type="Tables" />
@@ -844,6 +978,18 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
     [CalcUnitOfMeasure].[Factory] AS [Factory]
     FROM [dbo].[CalcUnitOfMeasure] AS [CalcUnitOfMeasure]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="Prices" EntityType="Self.Prices" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Prices].[PriceListId] AS [PriceListId], 
+    [Prices].[ItemId] AS [ItemId], 
+    [Prices].[UOM] AS [UOM], 
+    [Prices].[Price] AS [Price]
+    FROM [dbo].[Prices] AS [Prices]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Accounts_BuisnessUnit" Association="Self.FK_Accounts_BuisnessUnit">
+            <End Role="BuisnessUnit" EntitySet="BuisnessUnit" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
           <AssociationSet Name="FK_CalcUnitOfMeasure_Items" Association="Self.FK_CalcUnitOfMeasure_Items">
             <End Role="Items" EntitySet="Items" />
             <End Role="CalcUnitOfMeasure" EntitySet="CalcUnitOfMeasure" />
@@ -862,6 +1008,10 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
           </AssociationSet>
           <AssociationSet Name="FK_Customers_Branches" Association="Self.FK_Customers_Branches">
             <End Role="Branches" EntitySet="Branches" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customers_BuisnessUnit" Association="Self.FK_Customers_BuisnessUnit">
+            <End Role="BuisnessUnit" EntitySet="BuisnessUnit" />
             <End Role="Customers" EntitySet="Customers" />
           </AssociationSet>
           <AssociationSet Name="FK_Customers_Categories" Association="Self.FK_Customers_Categories">
@@ -888,8 +1038,16 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
             <End Role="Terms" EntitySet="Terms" />
             <End Role="Customers" EntitySet="Customers" />
           </AssociationSet>
+          <AssociationSet Name="FK_DeliveryMen_BuisnessUnit" Association="Self.FK_DeliveryMen_BuisnessUnit">
+            <End Role="BuisnessUnit" EntitySet="BuisnessUnit" />
+            <End Role="DeliveryMen" EntitySet="DeliveryMen" />
+          </AssociationSet>
           <AssociationSet Name="FK_Items_Brands" Association="Self.FK_Items_Brands">
             <End Role="Brands" EntitySet="Brands" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_BuisnessUnit" Association="Self.FK_Items_BuisnessUnit">
+            <End Role="BuisnessUnit" EntitySet="BuisnessUnit" />
             <End Role="Items" EntitySet="Items" />
           </AssociationSet>
           <AssociationSet Name="FK_Items_Categories" Association="Self.FK_Items_Categories">
@@ -932,8 +1090,24 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
             <End Role="UnitOfMeasure" EntitySet="UnitOfMeasure" />
             <End Role="Items" EntitySet="Items" />
           </AssociationSet>
+          <AssociationSet Name="FK_Prices_Items" Association="Self.FK_Prices_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="Prices" EntitySet="Prices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prices_PriceLists" Association="Self.FK_Prices_PriceLists">
+            <End Role="PriceLists" EntitySet="PriceLists" />
+            <End Role="Prices" EntitySet="Prices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prices_UnitOfMeasure" Association="Self.FK_Prices_UnitOfMeasure">
+            <End Role="UnitOfMeasure" EntitySet="UnitOfMeasure" />
+            <End Role="Prices" EntitySet="Prices" />
+          </AssociationSet>
           <AssociationSet Name="FK_Sales_Branches" Association="Self.FK_Sales_Branches">
             <End Role="Branches" EntitySet="Branches" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sales_BuisnessUnit" Association="Self.FK_Sales_BuisnessUnit">
+            <End Role="BuisnessUnit" EntitySet="BuisnessUnit" />
             <End Role="Sales" EntitySet="Sales" />
           </AssociationSet>
           <AssociationSet Name="FK_Sales_Customers" Association="Self.FK_Sales_Customers">
@@ -992,6 +1166,10 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
             <End Role="Branches" EntitySet="Branches" />
             <End Role="Salesmen" EntitySet="Salesmen" />
           </AssociationSet>
+          <AssociationSet Name="FK_Salesmen_BuisnessUnit" Association="Self.FK_Salesmen_BuisnessUnit">
+            <End Role="BuisnessUnit" EntitySet="BuisnessUnit" />
+            <End Role="Salesmen" EntitySet="Salesmen" />
+          </AssociationSet>
           <AssociationSet Name="FK_Salesmen_Categories" Association="Self.FK_Salesmen_Categories">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Salesmen" EntitySet="Salesmen" />
@@ -1008,9 +1186,12 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
             <End Role="Stores" EntitySet="Stores" />
             <End Role="Salesmen" EntitySet="Salesmen" />
           </AssociationSet>
+          <AssociationSet Name="FK_Stores_BuisnessUnit" Association="Self.FK_Stores_BuisnessUnit">
+            <End Role="BuisnessUnit" EntitySet="BuisnessUnit" />
+            <End Role="Stores" EntitySet="Stores" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Arabology_ERPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1026,6 +1207,8 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
           <Property Name="FinalAccount" Type="Int16" />
           <Property Name="FinalState" Type="Int16" />
           <Property Name="ParentId" Type="Int32" />
+          <Property Name="BUID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BuisnessUnit" Relationship="Arabology_ERPModel.FK_Accounts_BuisnessUnit" FromRole="Account" ToRole="BuisnessUnit" />
         </EntityType>
         <EntityType Name="Area">
           <Key>
@@ -1134,6 +1317,8 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
           <NavigationProperty Name="Term" Relationship="Self.FK_Customers_Terms" FromRole="Customers" ToRole="Terms" />
           <NavigationProperty Name="Sales" Relationship="Self.FK_Sales_Customers" FromRole="Customers" ToRole="Sales" />
           <NavigationProperty Name="Sales1" Relationship="Self.FK_Sales_Customers1" FromRole="Customers" ToRole="Sales" />
+          <Property Name="BUID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BuisnessUnit" Relationship="Arabology_ERPModel.FK_Customers_BuisnessUnit" FromRole="Customer" ToRole="BuisnessUnit" />
         </EntityType>
         <EntityType Name="DeliveryMan">
           <Key>
@@ -1146,6 +1331,8 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
           <Property Name="BranchId" Type="Int32" />
           <Property Name="InActive" Type="Boolean" />
           <NavigationProperty Name="Sales" Relationship="Self.FK_Sales_DeliveryMen" FromRole="DeliveryMen" ToRole="Sales" />
+          <Property Name="BUID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BuisnessUnit" Relationship="Arabology_ERPModel.FK_DeliveryMen_BuisnessUnit" FromRole="DeliveryMan" ToRole="BuisnessUnit" />
         </EntityType>
         <EntityType Name="Item">
           <Key>
@@ -1179,6 +1366,9 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
           <NavigationProperty Name="UnitOfMeasure4" Relationship="Self.FK_Items_UnitOfMeasure4" FromRole="Items" ToRole="UnitOfMeasure" />
           <NavigationProperty Name="UnitOfMeasure5" Relationship="Self.FK_Items_UnitOfMeasure5" FromRole="Items" ToRole="UnitOfMeasure" />
           <NavigationProperty Name="SalesLines" Relationship="Self.FK_SalesLines_Items" FromRole="Items" ToRole="SalesLines" />
+          <Property Name="BUID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BuisnessUnit" Relationship="Arabology_ERPModel.FK_Items_BuisnessUnit" FromRole="Item" ToRole="BuisnessUnit" />
+          <NavigationProperty Name="Prices" Relationship="Arabology_ERPModel.FK_Prices_Items" FromRole="Item" ToRole="Price" />
         </EntityType>
         <EntityType Name="ItemSubType">
           <Key>
@@ -1214,6 +1404,7 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
           <Property Name="Currency" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Customers" Relationship="Self.FK_Customers_PriceLists" FromRole="PriceLists" ToRole="Customers" />
           <NavigationProperty Name="Sales" Relationship="Self.FK_Sales_PriceLists" FromRole="PriceLists" ToRole="Sales" />
+          <NavigationProperty Name="Prices" Relationship="Arabology_ERPModel.FK_Prices_PriceLists" FromRole="PriceList" ToRole="Price" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
@@ -1263,6 +1454,9 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
           <NavigationProperty Name="Sector1" Relationship="Self.FK_Sales_Sectors1" FromRole="Sales" ToRole="Sectors" />
           <NavigationProperty Name="Store" Relationship="Self.FK_Sales_Stores" FromRole="Sales" ToRole="Stores" />
           <NavigationProperty Name="SalesLines" Relationship="Self.FK_SalesLines_Sales" FromRole="Sales" ToRole="SalesLines" />
+          <Property Name="InvType" Type="Int32" Nullable="false" />
+          <Property Name="BUID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BuisnessUnit" Relationship="Arabology_ERPModel.FK_Sales_BuisnessUnit" FromRole="Sale" ToRole="BuisnessUnit" />
         </EntityType>
         <EntityType Name="SalesLine">
           <Key>
@@ -1316,6 +1510,8 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
           <NavigationProperty Name="SalesmanType" Relationship="Self.FK_Salesmen_SalesmanTypes" FromRole="Salesmen" ToRole="SalesmanTypes" />
           <NavigationProperty Name="Sector" Relationship="Self.FK_Salesmen_Sectors" FromRole="Salesmen" ToRole="Sectors" />
           <NavigationProperty Name="Store" Relationship="Self.FK_Salesmen_Stores" FromRole="Salesmen" ToRole="Stores" />
+          <Property Name="BUID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BuisnessUnit" Relationship="Arabology_ERPModel.FK_Salesmen_BuisnessUnit" FromRole="Salesman" ToRole="BuisnessUnit" />
         </EntityType>
         <EntityType Name="Sector">
           <Key>
@@ -1341,6 +1537,8 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
           <NavigationProperty Name="SalesLines" Relationship="Self.FK_SalesLines_Stores" FromRole="Stores" ToRole="SalesLines" />
           <NavigationProperty Name="SalesLines1" Relationship="Self.FK_SalesLines_Stores1" FromRole="Stores" ToRole="SalesLines" />
           <NavigationProperty Name="Salesmen" Relationship="Self.FK_Salesmen_Stores" FromRole="Stores" ToRole="Salesmen" />
+          <Property Name="BUID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BuisnessUnit" Relationship="Arabology_ERPModel.FK_Stores_BuisnessUnit" FromRole="Store" ToRole="BuisnessUnit" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -1378,6 +1576,7 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
           <NavigationProperty Name="SalesLines" Relationship="Self.FK_SalesLines_UnitOfMeasure" FromRole="UnitOfMeasure" ToRole="SalesLines" />
           <NavigationProperty Name="CalcUnitOfMeasures" Relationship="Self.FK_CalcUnitOfMeasure_UnitOfMeasure" FromRole="UnitOfMeasure" ToRole="CalcUnitOfMeasure" />
           <NavigationProperty Name="CalcUnitOfMeasures1" Relationship="Self.FK_CalcUnitOfMeasure_UnitOfMeasure1" FromRole="UnitOfMeasure" ToRole="CalcUnitOfMeasure" />
+          <NavigationProperty Name="Prices" Relationship="Arabology_ERPModel.FK_Prices_UnitOfMeasure" FromRole="UnitOfMeasure" ToRole="Price" />
         </EntityType>
         <EntityType Name="CalcUnitOfMeasure">
           <Key>
@@ -2073,7 +2272,199 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
             <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
             <End Role="CalcUnitOfMeasure" EntitySet="CalcUnitOfMeasures" />
           </AssociationSet>
+          <EntitySet Name="BuisnessUnits" EntityType="Arabology_ERPModel.BuisnessUnit" />
+          <EntitySet Name="Prices" EntityType="Arabology_ERPModel.Price" />
+          <AssociationSet Name="FK_Accounts_BuisnessUnit" Association="Arabology_ERPModel.FK_Accounts_BuisnessUnit">
+            <End Role="BuisnessUnit" EntitySet="BuisnessUnits" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customers_BuisnessUnit" Association="Arabology_ERPModel.FK_Customers_BuisnessUnit">
+            <End Role="BuisnessUnit" EntitySet="BuisnessUnits" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliveryMen_BuisnessUnit" Association="Arabology_ERPModel.FK_DeliveryMen_BuisnessUnit">
+            <End Role="BuisnessUnit" EntitySet="BuisnessUnits" />
+            <End Role="DeliveryMan" EntitySet="DeliveryMen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_BuisnessUnit" Association="Arabology_ERPModel.FK_Items_BuisnessUnit">
+            <End Role="BuisnessUnit" EntitySet="BuisnessUnits" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sales_BuisnessUnit" Association="Arabology_ERPModel.FK_Sales_BuisnessUnit">
+            <End Role="BuisnessUnit" EntitySet="BuisnessUnits" />
+            <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Salesmen_BuisnessUnit" Association="Arabology_ERPModel.FK_Salesmen_BuisnessUnit">
+            <End Role="BuisnessUnit" EntitySet="BuisnessUnits" />
+            <End Role="Salesman" EntitySet="Salesmen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stores_BuisnessUnit" Association="Arabology_ERPModel.FK_Stores_BuisnessUnit">
+            <End Role="BuisnessUnit" EntitySet="BuisnessUnits" />
+            <End Role="Store" EntitySet="Stores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prices_Items" Association="Arabology_ERPModel.FK_Prices_Items">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="Price" EntitySet="Prices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prices_PriceLists" Association="Arabology_ERPModel.FK_Prices_PriceLists">
+            <End Role="PriceList" EntitySet="PriceLists" />
+            <End Role="Price" EntitySet="Prices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prices_UnitOfMeasure" Association="Arabology_ERPModel.FK_Prices_UnitOfMeasure">
+            <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
+            <End Role="Price" EntitySet="Prices" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="BuisnessUnit">
+          <Key>
+            <PropertyRef Name="BUID" />
+          </Key>
+          <Property Name="BUID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BUNameA" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="BUNameE" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="InActive" Type="Boolean" />
+          <NavigationProperty Name="Accounts" Relationship="Arabology_ERPModel.FK_Accounts_BuisnessUnit" FromRole="BuisnessUnit" ToRole="Account" />
+          <NavigationProperty Name="Customers" Relationship="Arabology_ERPModel.FK_Customers_BuisnessUnit" FromRole="BuisnessUnit" ToRole="Customer" />
+          <NavigationProperty Name="DeliveryMen" Relationship="Arabology_ERPModel.FK_DeliveryMen_BuisnessUnit" FromRole="BuisnessUnit" ToRole="DeliveryMan" />
+          <NavigationProperty Name="Items" Relationship="Arabology_ERPModel.FK_Items_BuisnessUnit" FromRole="BuisnessUnit" ToRole="Item" />
+          <NavigationProperty Name="Sales" Relationship="Arabology_ERPModel.FK_Sales_BuisnessUnit" FromRole="BuisnessUnit" ToRole="Sale" />
+          <NavigationProperty Name="Salesmen" Relationship="Arabology_ERPModel.FK_Salesmen_BuisnessUnit" FromRole="BuisnessUnit" ToRole="Salesman" />
+          <NavigationProperty Name="Stores" Relationship="Arabology_ERPModel.FK_Stores_BuisnessUnit" FromRole="BuisnessUnit" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="PriceListId" />
+            <PropertyRef Name="ItemId" />
+            <PropertyRef Name="UOM" />
+          </Key>
+          <Property Name="PriceListId" Type="Int32" Nullable="false" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="UOM" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Price1" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Item" Relationship="Arabology_ERPModel.FK_Prices_Items" FromRole="Price" ToRole="Item" />
+          <NavigationProperty Name="PriceList" Relationship="Arabology_ERPModel.FK_Prices_PriceLists" FromRole="Price" ToRole="PriceList" />
+          <NavigationProperty Name="UnitOfMeasure" Relationship="Arabology_ERPModel.FK_Prices_UnitOfMeasure" FromRole="Price" ToRole="UnitOfMeasure" />
+        </EntityType>
+        <Association Name="FK_Accounts_BuisnessUnit">
+          <End Type="Arabology_ERPModel.BuisnessUnit" Role="BuisnessUnit" Multiplicity="0..1" />
+          <End Type="Arabology_ERPModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuisnessUnit">
+              <PropertyRef Name="BUID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="BUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customers_BuisnessUnit">
+          <End Type="Arabology_ERPModel.BuisnessUnit" Role="BuisnessUnit" Multiplicity="0..1" />
+          <End Type="Arabology_ERPModel.Customer" Role="Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuisnessUnit">
+              <PropertyRef Name="BUID" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="BUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliveryMen_BuisnessUnit">
+          <End Type="Arabology_ERPModel.BuisnessUnit" Role="BuisnessUnit" Multiplicity="0..1" />
+          <End Type="Arabology_ERPModel.DeliveryMan" Role="DeliveryMan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuisnessUnit">
+              <PropertyRef Name="BUID" />
+            </Principal>
+            <Dependent Role="DeliveryMan">
+              <PropertyRef Name="BUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_BuisnessUnit">
+          <End Type="Arabology_ERPModel.BuisnessUnit" Role="BuisnessUnit" Multiplicity="0..1" />
+          <End Type="Arabology_ERPModel.Item" Role="Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuisnessUnit">
+              <PropertyRef Name="BUID" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="BUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sales_BuisnessUnit">
+          <End Type="Arabology_ERPModel.BuisnessUnit" Role="BuisnessUnit" Multiplicity="0..1" />
+          <End Type="Arabology_ERPModel.Sale" Role="Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuisnessUnit">
+              <PropertyRef Name="BUID" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="BUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Salesmen_BuisnessUnit">
+          <End Type="Arabology_ERPModel.BuisnessUnit" Role="BuisnessUnit" Multiplicity="0..1" />
+          <End Type="Arabology_ERPModel.Salesman" Role="Salesman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuisnessUnit">
+              <PropertyRef Name="BUID" />
+            </Principal>
+            <Dependent Role="Salesman">
+              <PropertyRef Name="BUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stores_BuisnessUnit">
+          <End Type="Arabology_ERPModel.BuisnessUnit" Role="BuisnessUnit" Multiplicity="0..1" />
+          <End Type="Arabology_ERPModel.Store" Role="Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuisnessUnit">
+              <PropertyRef Name="BUID" />
+            </Principal>
+            <Dependent Role="Store">
+              <PropertyRef Name="BUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prices_Items">
+          <End Type="Arabology_ERPModel.Item" Role="Item" Multiplicity="1" />
+          <End Type="Arabology_ERPModel.Price" Role="Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prices_PriceLists">
+          <End Type="Arabology_ERPModel.PriceList" Role="PriceList" Multiplicity="1" />
+          <End Type="Arabology_ERPModel.Price" Role="Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceList">
+              <PropertyRef Name="PriceListId" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="PriceListId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prices_UnitOfMeasure">
+          <End Type="Arabology_ERPModel.UnitOfMeasure" Role="UnitOfMeasure" Multiplicity="1" />
+          <End Type="Arabology_ERPModel.Price" Role="Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitOfMeasure">
+              <PropertyRef Name="UOM" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="UOM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2083,6 +2474,7 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="Arabology_ERPModel.Account">
               <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="BUID" ColumnName="BUID" />
                 <ScalarProperty Name="AccountId" ColumnName="AccountId" />
                 <ScalarProperty Name="AccountNameA" ColumnName="AccountNameA" />
                 <ScalarProperty Name="AccountNameE" ColumnName="AccountNameE" />
@@ -2167,6 +2559,7 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="Arabology_ERPModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="BUID" ColumnName="BUID" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="CustomerNameA" ColumnName="CustomerNameA" />
                 <ScalarProperty Name="CustomerNameE" ColumnName="CustomerNameE" />
@@ -2192,6 +2585,7 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
           <EntitySetMapping Name="DeliveryMen">
             <EntityTypeMapping TypeName="Arabology_ERPModel.DeliveryMan">
               <MappingFragment StoreEntitySet="DeliveryMen">
+                <ScalarProperty Name="BUID" ColumnName="BUID" />
                 <ScalarProperty Name="DeliveryManId" ColumnName="DeliveryManId" />
                 <ScalarProperty Name="DeliveryManNameA" ColumnName="DeliveryManNameA" />
                 <ScalarProperty Name="DeliveryManNameE" ColumnName="DeliveryManNameE" />
@@ -2204,6 +2598,7 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
           <EntitySetMapping Name="Items">
             <EntityTypeMapping TypeName="Arabology_ERPModel.Item">
               <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="BUID" ColumnName="BUID" />
                 <ScalarProperty Name="ItemId" ColumnName="ItemId" />
                 <ScalarProperty Name="ItemNameA" ColumnName="ItemNameA" />
                 <ScalarProperty Name="ItemNameE" ColumnName="ItemNameE" />
@@ -2269,6 +2664,8 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
           <EntitySetMapping Name="Sales">
             <EntityTypeMapping TypeName="Arabology_ERPModel.Sale">
               <MappingFragment StoreEntitySet="Sales">
+                <ScalarProperty Name="BUID" ColumnName="BUID" />
+                <ScalarProperty Name="InvType" ColumnName="InvType" />
                 <ScalarProperty Name="SalesId" ColumnName="SalesId" />
                 <ScalarProperty Name="DocNo" ColumnName="DocNo" />
                 <ScalarProperty Name="SectorId" ColumnName="SectorId" />
@@ -2328,6 +2725,7 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
           <EntitySetMapping Name="Salesmen">
             <EntityTypeMapping TypeName="Arabology_ERPModel.Salesman">
               <MappingFragment StoreEntitySet="Salesmen">
+                <ScalarProperty Name="BUID" ColumnName="BUID" />
                 <ScalarProperty Name="SalesmanId" ColumnName="SalesmanId" />
                 <ScalarProperty Name="SalesmanNameA" ColumnName="SalesmanNameA" />
                 <ScalarProperty Name="SalesmanNameE" ColumnName="SalesmanNameE" />
@@ -2353,6 +2751,7 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
           <EntitySetMapping Name="Stores">
             <EntityTypeMapping TypeName="Arabology_ERPModel.Store">
               <MappingFragment StoreEntitySet="Stores">
+                <ScalarProperty Name="BUID" ColumnName="BUID" />
                 <ScalarProperty Name="StoreId" ColumnName="StoreId" />
                 <ScalarProperty Name="StoreNameA" ColumnName="StoreNameA" />
                 <ScalarProperty Name="StoreNameE" ColumnName="StoreNameE" />
@@ -2397,6 +2796,26 @@ error 6004: The table 'Arabology_ERP.dbo.Prices' is referenced by a relationship
                 <ScalarProperty Name="MainUOM" ColumnName="MainUOM" />
                 <ScalarProperty Name="ConvertTo" ColumnName="ConvertTo" />
                 <ScalarProperty Name="Factory" ColumnName="Factory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BuisnessUnits">
+            <EntityTypeMapping TypeName="Arabology_ERPModel.BuisnessUnit">
+              <MappingFragment StoreEntitySet="BuisnessUnit">
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
+                <ScalarProperty Name="BUNameE" ColumnName="BUNameE" />
+                <ScalarProperty Name="BUNameA" ColumnName="BUNameA" />
+                <ScalarProperty Name="BUID" ColumnName="BUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prices">
+            <EntityTypeMapping TypeName="Arabology_ERPModel.Price">
+              <MappingFragment StoreEntitySet="Prices">
+                <ScalarProperty Name="Price1" ColumnName="Price" />
+                <ScalarProperty Name="UOM" ColumnName="UOM" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="PriceListId" ColumnName="PriceListId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

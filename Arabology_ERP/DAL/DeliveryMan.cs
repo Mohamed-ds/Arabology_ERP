@@ -26,8 +26,10 @@ namespace Arabology_ERP.DAL
         public Nullable<int> CategoryId { get; set; }
         public Nullable<int> BranchId { get; set; }
         public Nullable<bool> InActive { get; set; }
+        public string BUID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sale> Sales { get; set; }
+        public virtual BuisnessUnit BuisnessUnit { get; set; }
     }
 }
